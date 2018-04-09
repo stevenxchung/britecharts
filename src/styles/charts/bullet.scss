@@ -1,12 +1,8 @@
 @import "../helpers/_variables.scss";
 
-$bar-color: desaturate($bc-green, 20%);
-$bar-color-hover: $bc-e-green-600;
-$bar-stroke-width: 0;
-
 .bullet-chart {
 
-    // lines
+    // Lines
     .marker-line {
         shape-rendering: crispEdges;
     }
@@ -14,5 +10,10 @@ $bar-stroke-width: 0;
     // Axes
     .axis-group path {
         display: none;
+    }
+
+    // Labels
+    .bullet-title {
+        font-size: 16px;
     }
 }
