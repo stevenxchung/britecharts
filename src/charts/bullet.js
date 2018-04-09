@@ -284,7 +284,7 @@ define(function(require) {
                 .enter()
                 .append('rect')
                   .attr('fill', colorSchema[0])
-                  .attr('opacity', (d, i) => opacityScale[i])
+                  .attr('fill-opacity', (d, i) => opacityScale[i])
                   .attr('class', (d, i) => `range r${i}`)
                   .attr('width', w0)
                   .attr('height', chartHeight)
@@ -376,9 +376,9 @@ define(function(require) {
                     .data([1])
                     .enter()
                     .append('text')
-                        .attr('class', 'bullet-subtitle x-axis-label')
-                        .attr('y', subtitleSpacing)
-                        .text(subtitle);
+                      .attr('class', 'bullet-subtitle x-axis-label')
+                      .attr('y', subtitleSpacing)
+                      .text(subtitle);
                 }
             }
         }

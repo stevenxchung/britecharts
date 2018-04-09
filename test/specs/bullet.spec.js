@@ -275,11 +275,10 @@ define(['d3', 'bullet', 'bulletChartDataBuilder'], function(d3, chart, dataBuild
                 rangeBars.forEach((rangeBar, i) => {
                     expect(rangeBar).toHaveAttr('fill', expectedFill);
                     expect(rangeBar).toHaveAttr('class', `${expectedClass}${i}`);
-                    expect(rangeBar).toHaveAttr('opacity');
+                    expect(rangeBar).toHaveAttr('fill-opacity');
                     expect(rangeBar).toHaveAttr('x');
                     expect(rangeBar).toHaveAttr('width');
                     expect(rangeBar).toHaveAttr('height');
-                    expect(rangeBar).not.toHaveAttr('y');
                 });
             });
         });
@@ -287,17 +286,17 @@ define(['d3', 'bullet', 'bulletChartDataBuilder'], function(d3, chart, dataBuild
         describe('markers', () => {
 
             it('when render, should have proper attributes', () => {
-                let expectedClass = 'marker m';
-                let expectedFill = '#7bdcc0';
-                let markerLines = containerFixture.selectAll('line.marker').nodes();
+                let expectedClass = 'marker-line';
+                let expectedStroke = '#ADB0B6';
+                let markerLines = containerFixture.selectAll(`line.${expectedClass}`).nodes();
 
-                markerLines.forEach((markerLine, i) => {
-                    expect(markerLine).toHaveAttr('fill', expectedFill);
-                    expect(markerLine).toHaveAttr('class', `${expectedClass}${i}`);
-                    expect(markerLine).toHaveAttr('opacity');
-                    expect(markerLine).toHaveAttr('x');
-                    expect(markerLine).toHaveAttr('width');
-                    expect(markerLine).toHaveAttr('height');
+                markerLines.forEach((markerLine) => {
+                    expect(markerLine).toHaveAttr('class', expectedClass);
+                    expect(markerLine).toHaveAttr('stroke', expectedStroke);
+                    expect(markerLine).toHaveAttr('x1');
+                    expect(markerLine).toHaveAttr('x2');
+                    expect(markerLine).toHaveAttr('y1');
+                    expect(markerLine).toHaveAttr('y2');
                 });
             });
         });
@@ -311,7 +310,7 @@ define(['d3', 'bullet', 'bulletChartDataBuilder'], function(d3, chart, dataBuild
                 let rangeBars = containerFixture.selectAll('rect.range').nodes().reverse();
 
                 rangeBars.forEach((rangeBar, i) => {
-                    expect(rangeBar).toHaveAttr('opacity', `${expectedStartOpacity - (i * diff)}`);
+                    expect(rangeBar).toHaveAttr('fill-opacity', `${expectedStartOpacity - (i * diff)}`);
                 });
             });
 
@@ -323,7 +322,7 @@ define(['d3', 'bullet', 'bulletChartDataBuilder'], function(d3, chart, dataBuild
                 let rangeBars = containerFixture.selectAll('rect.range').nodes().reverse();
 
                 rangeBars.forEach((rangeBar, i) => {
-                    expect(rangeBar).toHaveAttr('opacity', `${expectedStartMaxOpacity - (i * diff)}`);
+                    expect(rangeBar).toHaveAttr('fill-opacity', `${expectedStartMaxOpacity - (i * diff)}`);
                 });
             });
         });
