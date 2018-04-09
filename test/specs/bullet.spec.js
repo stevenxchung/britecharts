@@ -61,13 +61,6 @@ define(['d3', 'bullet', 'bulletChartDataBuilder'], function(d3, chart, dataBuild
 
                     expect(actual).toEqual(expected);
                 });
-
-                it('should render grid lines group', () => {
-                    let expected = 1;
-                    let actual = containerFixture.select('.grid-lines-group').nodes().length;
-
-                    expect(actual).toEqual(expected);
-                });
             });
 
             describe('chart components', () => {

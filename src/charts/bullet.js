@@ -58,7 +58,7 @@ define(function(require) {
                 top: 20,
                 right: 20,
                 bottom: 30,
-                left: 0
+                left: 20
             },
             data,
             width = 960, height = 150,
@@ -91,6 +91,7 @@ define(function(require) {
             rangesEl,
             measuresEl,
             markersEl,
+            maskGridLines,
 
             legendSpacing = 100,
             title,
@@ -130,6 +131,7 @@ define(function(require) {
                 buildScales();
                 buildSVG(this);
                 buildAxis();
+                drawGridLines();
                 drawBullet();
                 drawLegends();
                 drawAxis();
@@ -160,8 +162,6 @@ define(function(require) {
                   .classed('container-group', true)
                   .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-            container
-                .append('g').classed('grid-lines-group', true);
             container
                 .append('g').classed('chart-group', true);
             container
@@ -314,6 +314,24 @@ define(function(require) {
                   .attr('x2', xScale)
                   .attr('y1', 0)
                   .attr('y2', chartHeight);
+        }
+
+        /**
+         * Draw gridlines corresponding to ticks
+         * @return {void}
+         * @private
+         */
+        function drawGridLines() {
+            maskGridLines = svg.select('.chart-group')
+              .selectAll('line.vertical-grid-line')
+              .data(xScale.ticks(ticks))
+              .enter()
+               .append('line')
+                .attr('class', 'vertical-grid-line')
+                .attr('y1', 0)
+                .attr('y2', chartHeight)
+                .attr('x1', (d) => xScale(d))
+                .attr('x2', (d) => xScale(d));
         }
 
         /**
